@@ -44,7 +44,7 @@ jobs:
         run: |
           task deps
           task unit-test
-          task test-no-logs
+#          task test-no-logs
 
   build:
     name: Build

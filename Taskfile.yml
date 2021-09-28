@@ -40,7 +40,7 @@ tasks:
   build:
     desc: Build service
     cmds:
-      - go build -o socnet .
+      - go build -o socnet ./cmd/socnet/main.go
 
   deps:
     desc: Build dependences

@@ -3,22 +3,22 @@
 version: '2'
 
 tasks:
-#  test:
-#    desc: |
-#      Run integration tests
-#    dir: testing
-#    cmds:
-#      - sudo docker-compose up --build --force-recreate -V --exit-code-from=testing --abort-on-container-exit testing brute-force-protection
-#      - sudo docker-compose down -v
-#
-#  test-no-logs:
-#    desc: |
-#      Run integration tests (clean mode)
-#    dir: testing
-#    cmds:
-#      - docker-compose up --build --force-recreate -V -d postgres brute-force-protection
-#      - docker-compose up --build --force-recreate -V --exit-code-from=testing --abort-on-container-exit testing
-#      - docker-compose down -v
+  #  test:
+  #    desc: |
+  #      Run integration tests
+  #    dir: testing
+  #    cmds:
+  #      - sudo docker-compose up --build --force-recreate -V --exit-code-from=testing --abort-on-container-exit testing brute-force-protection
+  #      - sudo docker-compose down -v
+  #
+  #  test-no-logs:
+  #    desc: |
+  #      Run integration tests (clean mode)
+  #    dir: testing
+  #    cmds:
+  #      - docker-compose up --build --force-recreate -V -d postgres brute-force-protection
+  #      - docker-compose up --build --force-recreate -V --exit-code-from=testing --abort-on-container-exit testing
+  #      - docker-compose down -v
 
   unit-test:
     desc: |
@@ -38,7 +38,7 @@ tasks:
       - golangci-lint run
 
   build:
-    desc: Build service
+    desc: Build server
     cmds:
       - go build -o socnet ./cmd/socnet/main.go
 
@@ -47,3 +47,9 @@ tasks:
     cmds:
       - go mod tidy
       - go mod vendor
+
+  docs:
+    desc: generate docs
+    cmds:
+      - go get github.com/swaggo/swag/cmd/swag@v1.7.1
+      - swag init -g ./cmd/socnet/main.go
